@@ -56,8 +56,8 @@
                 <div>
                     <label class="block font-semibold mb-1">Jenis Kendaraan*</label>
                     <select name="nokartu" class="border rounded w-full p-2 focus:ring focus:ring-blue-300" required>
-                        <option value="R2" {{ old('nokartu', $submission->nokartu) == 'R2' ? 'selected' : '' }}>R2</option>
-                        <option value="R4" {{ old('nokartu', $submission->nokartu) == 'R4' ? 'selected' : '' }}>R4</option>
+                        <option value="Roda 2" {{ old('nokartu', $submission->nokartu) == 'Roda 2' ? 'selected' : '' }}>R2</option>
+                        <option value="Roda 4" {{ old('nokartu', $submission->nokartu) == 'Roda 4' ? 'selected' : '' }}>R4</option>
                         <option value="Lainnya" {{ old('nokartu', $submission->nokartu) == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                     </select>
                 </div>
