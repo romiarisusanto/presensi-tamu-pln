@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up()
+    {
+        Schema::table('laporans', function (Blueprint $table) {
+            $table->unsignedBigInteger('tujuan_id')->nullable()->after('status');
+
+            // Kalau ada relasi foreign key ke tabel tujuan
+            $table->foreign('tujuan_id')->references('id')->on('tujuans')->onDelete('set null');
+        });
+    }
+
+    // public function down()
+    // {
+    //     Schema::table('laporans', function (Blueprint $table) {
+    //         $table->dropForeign(['tujuan_id']);
+    //         $table->dropColumn('tujuan_id');
+    //     });
+    // }
+    
+    public function down()
+    {
+        Schema::table('laporans', function (Blueprint $table) {
+            if (Schema::hasColumn('laporans', 'tujuan_id')) {
+                $table->dropColumn('tujuan_id');
+            }
+        });
+    }
+
+};
