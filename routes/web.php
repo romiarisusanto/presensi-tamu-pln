@@ -39,7 +39,7 @@ Route::post('/submission', [SubmissionController::class, 'store'])->name('submis
 // Authenticated routes
 Route::middleware(['auth', 'verified'])->group(function () {
     //akun user
-    //Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class);
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
