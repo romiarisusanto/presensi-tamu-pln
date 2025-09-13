@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('nomor')->primary();
             $table->string('id_kartu');
             $table->string('zona');
-            $table->timestamps();
         });
     }
 
