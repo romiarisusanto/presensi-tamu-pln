@@ -20,40 +20,92 @@ class SubmissionController extends Controller
         return view('submission.usermain', compact('tamuPending', 'tamuAktif', 'tamuNonAktif'));
     }
     
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'tujuan_id' => 'required|string|max:255',
+    //         'name' => 'required|string|max:255',
+    //         'alamat' => 'required|string|max:255',
+    //         'jumlah' => 'required|string|max:255',
+    //         'keperluan' => 'required|string|max:255',
+    //         'keluar' => 'nullable|string|max:5',
+    //         'identitas' => 'required|string|max:255',
+    //         'daerah' => 'nullable|string|max:255',
+    //         'nokartu' => 'required|string|max:255',
+    //         'nopol' => 'required|string|max:255',
+    //     ]);
+
+    //     Submission::create([
+    //         'tujuan_id' => $request->tujuan_id, // sudah gabung dari JS
+    //         'name' => $request->name,
+    //         'alamat' => $request->alamat,
+    //         'jumlah' => $request->jumlah,
+    //         'keperluan' => $request->keperluan,
+    //         'keluar' => null,
+    //         'identitas' => $request->identitas,
+    //         'daerah' => strtoupper($request->daerah ?? ''),
+    //         'nokartu' => $request->nokartu,
+    //         'nopol' => strtoupper($request->nopol ?? ''),
+    //         'status' => 'pending',
+    //     ]);
+
+    //     return response()->json([
+    //         'success' => true,
+    //         'message' => 'Data berhasil disimpan!'
+    //     ]);
+    // }
+
     public function store(Request $request)
     {
-        $request->validate([
-            'tujuan_id' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'jumlah' => 'required|string|max:255',
-            'keperluan' => 'required|string|max:255',
-            'keluar' => 'nullable|string|max:5',
-            'identitas' => 'required|string|max:255',
-            'daerah' => 'nullable|string|max:255',
-            'nokartu' => 'required|string|max:255',
-            'nopol' => 'required|string|max:255',
-        ]);
+        try {
+            $validated = $request->validate([
+                'tujuan_id' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
+                'alamat' => 'required|string|max:255',
+                'jumlah' => 'required|string|max:255',
+                'keperluan' => 'required|string|max:255',
+                'keluar' => 'nullable|string|max:5',
+                'identitas' => 'required|string|max:255',
+                'daerah' => 'nullable|string|max:255',
+                'nokartu' => 'required|string|max:255',
+                'nopol' => 'required|string|max:255',
+            ]);
 
-        Submission::create([
-            'tujuan_id' => $request->tujuan_id, // sudah gabung dari JS
-            'name' => $request->name,
-            'alamat' => $request->alamat,
-            'jumlah' => $request->jumlah,
-            'keperluan' => $request->keperluan,
-            'keluar' => null,
-            'identitas' => $request->identitas,
-            'daerah' => strtoupper($request->daerah ?? ''),
-            'nokartu' => $request->nokartu,
-            'nopol' => strtoupper($request->nopol ?? ''),
-            'status' => 'pending',
-        ]);
+            Submission::create([
+                'tujuan_id' => $validated['tujuan_id'],
+                'name' => $validated['name'],
+                'alamat' => $validated['alamat'],
+                'jumlah' => $validated['jumlah'],
+                'keperluan' => $validated['keperluan'],
+                'keluar' => null,
+                'identitas' => $validated['identitas'],
+                'daerah' => strtoupper($validated['daerah'] ?? ''),
+                'nokartu' => $validated['nokartu'],
+                'nopol' => strtoupper($validated['nopol'] ?? ''),
+                'status' => 'pending',
+            ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Data berhasil disimpan!'
-        ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil disimpan!'
+            ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Validasi gagal
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors(),
+            ], 422);
+
+        } catch (\Exception $e) {
+            // Error lain
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
+
 
     public function create()
     {
