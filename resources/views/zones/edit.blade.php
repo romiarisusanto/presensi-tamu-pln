@@ -4,7 +4,7 @@
 @section('content')
 <h1 class="text-2xl font-bold mb-6">Edit Data Kartu Daerah</h1>
 
-<a href="{{ route('zones.index') }}" class="bg-gray-500 text-white px-3 py-1 rounded inline-block mb-4">
+<a href="{{ route('zones') }}" class="bg-gray-500 text-white px-3 py-1 rounded inline-block mb-4">
     Kembali
 </a>
 
