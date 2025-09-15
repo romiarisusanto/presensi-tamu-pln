@@ -122,7 +122,6 @@
         </form>
     </div>
     </div>
-
   </div>
 
 <script>
@@ -133,6 +132,7 @@ function closeModal() {
   document.getElementById("loginModal").style.display = "none";
 }
 </script>
+
 <script>
 document.getElementById('submissionForm').addEventListener('submit', function(e){
     e.preventDefault();
@@ -201,19 +201,6 @@ document.getElementById('submissionForm').addEventListener('submit', function(e)
     }
   });
 </script>
-<!-- 
-<script>
-  const input = document.getElementById('angka');
-
-  input.addEventListener('input', function() {
-    
-    this.value = this.value.replace(/\D/g, '');
-    
-    if (this.value.length > 2) {
-      this.value = this.value.slice(0, 2);
-    }
-  });
-</script> -->
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

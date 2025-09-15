@@ -130,7 +130,58 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
+document.getElementById('createForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    let form = e.target;
+    let formData = new FormData(form);
+
+    // ambil unit + nama tujuan
+    const unit = formData.get('unit'); 
+    const tujuanSelect = document.getElementById('tujuan_id');
+    const tujuanNama = tujuanSelect.options[tujuanSelect.selectedIndex].text; 
+
+    // overwrite tujuan_id biar sama kayak Landing.blade
+    formData.set('tujuan_id', unit + ' - ' + tujuanNama);
+
+    // pastikan nopol huruf besar
+    if(formData.get('nopol')){
+        formData.set('nopol', formData.get('nopol').trim().toUpperCase());
+    }
+
+    fetch(form.action, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: data.message,
+                timer: 2000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "{{ route('submission.datatamu') }}";
+            });
+        } else {
+            Swal.fire("Gagal!", data.message || "Terjadi kesalahan.", "error");
+        }
+    })
+    .catch(err => {
+        Swal.fire("Error!", "Tidak dapat terhubung ke server.", "error");
+    });
+});
+</script>
+
+
+<!-- <script>
 document.getElementById('createForm').addEventListener('submit', function(e){
     e.preventDefault();
 
@@ -164,5 +215,5 @@ document.getElementById('createForm').addEventListener('submit', function(e){
         Swal.fire("Error!", "Tidak dapat terhubung ke server.", "error");
     });
 });
-</script>
+</script> -->
 @endsection
