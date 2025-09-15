@@ -55,6 +55,7 @@ class ZoneController extends Controller {
         $zone = Zone::where('id', $id)->firstOrFail();
         $zone->update([
             'id_kartu' => $request->id_kartu,
+            'nomor' => $request->nomor,
         ]);
 
         return redirect()->route('zones');
