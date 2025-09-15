@@ -35,13 +35,27 @@
             Perbarui
         </button>
 
-        <a href="{{ route('laporans.export') }}" 
+        <!-- <a href="{{ route('laporans.export') }}" 
         class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
         Unduh Data
-        </a>
+        </a> -->
+        <div class="relative inline-block text-left group">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2">
+                Unduh Data
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
 
-
+            <div class="absolute hidden group-hover:block bg-white border rounded-lg shadow-lg mt-1 w-40 z-50">
+                <a href="{{ route('laporans.export', ['period' => 'day']) }}" class="block px-3 py-2 hover:bg-gray-100">Hari ini</a>
+                <a href="{{ route('laporans.export', ['period' => 'week']) }}" class="block px-3 py-2 hover:bg-gray-100">Minggu ini</a>
+                <a href="{{ route('laporans.export', ['period' => 'month']) }}" class="block px-3 py-2 hover:bg-gray-100">Bulan ini</a>
+                <a href="{{ route('laporans.export', ['period' => 'all']) }}" class="block px-3 py-2 hover:bg-gray-100">Semua</a>
+            </div>
+        </div>
     </div>
+    
     <!-- Table -->
     <div id="laporanTableContainer" class="overflow-x-auto">
         @include('laporans.partials.table', ['laporans' => $laporans])

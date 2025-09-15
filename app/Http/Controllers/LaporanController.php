@@ -68,9 +68,16 @@ class LaporanController extends Controller
         return view('laporan.index', compact('laporans', 'totalKunjungan'));
     }
     
-    public function export()
+    // public function export()
+    // {
+    //     return Excel::download(new LaporanExport, 'laporans.xlsx');
+    // }
+
+    public function export(Request $request)
     {
-        return Excel::download(new LaporanExport, 'laporans.xlsx');
+        $period = $request->get('period', 'all'); // default semua
+
+        return Excel::download(new LaporanExport($period), 'laporans.xlsx');
     }
 
 

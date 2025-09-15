@@ -81,8 +81,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/zones', [ZoneController::class, 'index'])->name('zones');
     Route::get('/zones/add', [ZoneController::class, 'create'])->name('zones.add');
     Route::post('/zones/add', [ZoneController::class, 'store'])->name('zones.store');
-    Route::get('/zones/edit/{id}', [ZoneController::class, 'edit'])->name('zones.edit');
-    Route::post('/zones/edit/{id}', [ZoneController::class, 'update'])->name('zones.update');
+    // Route::get('/zones/edit/{id}', [ZoneController::class, 'edit'])->name('zones.edit');
+    // Route::post('/zones/edit/{id}', [ZoneController::class, 'update'])->name('zones.update');
     Route::delete('/zones/delete/{id}', [ZoneController::class, 'destroy'])->name('zones.delete');
     Route::get('/zones/get-by-kartu/{id_kartu}', [ZoneController::class, 'getByKartu'])->name('zones.getByKartu');
 
