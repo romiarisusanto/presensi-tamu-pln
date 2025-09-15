@@ -14,16 +14,50 @@ use Maatwebsite\Excel\Facades\Excel;
 class TujuanController extends Controller
 {
 
+    // public function index(Request $request)
+    // {
+    //     $unitFilter = $request->unit;
+    //     $tujuans = Tujuan::all();
+
+    //     // Ambil semua tujuan sesuai filter (opsional)
+    //     $tujuans = Tujuan::when($unitFilter, function($query) use ($unitFilter) {
+    //         $query->where('unit', $unitFilter);
+    //     })->get();
+        
+    //     $counts = Tujuan::select('unit', DB::raw('count(*) as total'))
+    //                 ->groupBy('unit')
+    //                 ->get();
+
+    //     // Hitung total kunjungan per unit
+    //     $rekapKunjunganPerUnitQuery = DB::table('submissions')
+    //         ->join('tujuans', 'submissions.tujuan_id', '=', 'tujuans.id')
+    //         ->select('tujuans.unit', DB::raw('COUNT(*) as total_kunjungan'))
+    //         ->groupBy('tujuans.unit');
+
+    //     if ($unitFilter) {
+    //         $rekapKunjunganPerUnitQuery->where('tujuans.unit', $unitFilter);
+    //     }
+
+    //     $rekapKunjunganPerUnit = $rekapKunjunganPerUnitQuery->pluck('total_kunjungan', 'unit');
+
+    //     return view('tujuans.index', compact('tujuans', 'rekapKunjunganPerUnit', 'unitFilter', 'counts'));
+    // }
+
     public function index(Request $request)
     {
         $unitFilter = $request->unit;
-        $tujuans = Tujuan::all();
+        $search = $request->search;
 
-        // Ambil semua tujuan sesuai filter (opsional)
+        // Query dasar
         $tujuans = Tujuan::when($unitFilter, function($query) use ($unitFilter) {
-            $query->where('unit', $unitFilter);
-        })->get();
-        
+                            $query->where('unit', $unitFilter);
+                        })
+                        ->when($search, function($query) use ($search) {
+                            $query->where('nama', 'like', '%' . $search . '%');
+                        })
+                        ->get();
+
+        // Hitung total pegawai per unit
         $counts = Tujuan::select('unit', DB::raw('count(*) as total'))
                     ->groupBy('unit')
                     ->get();
@@ -40,8 +74,9 @@ class TujuanController extends Controller
 
         $rekapKunjunganPerUnit = $rekapKunjunganPerUnitQuery->pluck('total_kunjungan', 'unit');
 
-        return view('tujuans.index', compact('tujuans', 'rekapKunjunganPerUnit', 'unitFilter', 'counts'));
+        return view('tujuans.index', compact('tujuans', 'rekapKunjunganPerUnit', 'unitFilter', 'counts', 'search'));
     }
+
 
     // Form tambah tujuan
     public function create()
