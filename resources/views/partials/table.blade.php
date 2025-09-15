@@ -11,7 +11,7 @@
                 <th class="px-4 py-2">Keperluan</th>
                 <th class="px-4 py-2">Tujuan</th>
                 <th class="px-4 py-2">Identitas</th>
-                <th class="px-4 py-2">No Daerah</th>
+                <th class="px-4 py-2">No Kartu Zona</th>
                 <th class="px-4 py-2">Jenis Kendaraan</th>
                 <th class="px-4 py-2">No Kendaraan</th>
                 <th class="px-4 py-2">Status</th>
