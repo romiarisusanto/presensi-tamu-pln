@@ -46,13 +46,13 @@ class ZoneController extends Controller {
         return redirect()->route('zones');
     }
 
-    public function edit($nomor) {
-        $zone = Zone::where('nomor', $nomor)->firstOrFail();
+    public function edit($id) {
+        $zone = Zone::where('id', $id)->firstOrFail();
         return view('zones.edit', compact('zone'));
     }
 
-    public function update(Request $request, $nomor) {
-        $zone = Zone::where('nomor', $nomor)->firstOrFail();
+    public function update(Request $request, $id) {
+        $zone = Zone::where('id', $id)->firstOrFail();
         $zone->update([
             'id_kartu' => $request->id_kartu,
             'zona' => $request->zona,
@@ -84,8 +84,8 @@ class ZoneController extends Controller {
 
 
 
-    public function destroy($nomor) {
-        $zone = Zone::where('nomor', $nomor)->firstOrFail();
+    public function destroy($id) {
+        $zone = Zone::where('id', $id)->firstOrFail();
         $zone->delete();
 
         return redirect()->route('zones');
