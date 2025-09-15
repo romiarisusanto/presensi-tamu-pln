@@ -55,14 +55,13 @@
                 </td>
                 <td class="px-4 py-2 flex gap-2">
                     <!-- Tombol Edit (icon pensil) -->
-                    <a href="{{ route('zones.edit', $item->id) }}" 
+                    <!-- <a href="{{ route('zones.edit', $item->id) }}" 
                     class="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 flex items-center justify-center">
-                        <!-- Icon pensil -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                 d="M15.232 5.232l3.536 3.536M9 13l6-6m2-2a2.121 2.121 0 113 3L7.5 21H3v-4.5L15 5z" />
                         </svg>
-                    </a>
+                    </a> -->
 
                     <!-- Tombol Delete (icon trash) -->
                     <form action="{{ route('zones.delete', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">

@@ -16,7 +16,7 @@
     <!-- Nomor (disabled) -->
     <div class="mb-4">
         <label class="block mb-1 font-semibold">Nomor</label>
-        <input type="text" value="{{ $zone->nomor_formatted }}" class="w-full border px-3 py-2 rounded bg-gray-100" required>
+        <input type="text" value="{{ $zone->nomor_formatted }}" class="w-full border px-3 py-2 rounded bg-gray-100" disabled>
     </div>
 
     <!-- ID Kartu -->
