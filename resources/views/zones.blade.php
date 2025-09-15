@@ -55,7 +55,7 @@
                 </td>
                 <td class="px-4 py-2 flex gap-2">
                     <!-- Tombol Edit (icon pensil) -->
-                    <a href="{{ route('zones.edit', $item->nomor) }}" 
+                    <a href="{{ route('zones.edit', $item->id) }}" 
                     class="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 flex items-center justify-center">
                         <!-- Icon pensil -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,7 +65,7 @@
                     </a>
 
                     <!-- Tombol Delete (icon trash) -->
-                    <form action="{{ route('zones.delete', $item->nomor_formatted) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                    <form action="{{ route('zones.delete', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="bg-red-500 text-white px-3 py-2 rounded" style="font-family: sans-serif;">Hapus</button>
