@@ -22,7 +22,6 @@
   <div class="top-photos">
       <img src="/images/danantara.png" alt="Foto 1">
       <img src="/images/pln.png" alt="Foto 2">
-      <img src="/images/80.png" alt="Foto 3">
   </div>
 
   <div class="container">
