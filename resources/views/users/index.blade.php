@@ -4,12 +4,12 @@
 <h1 class="text-2xl font-bold mb-6">Data User</h1>
 
 <!-- Tombol Tambah Akun -->
-<div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2 md:gap-0">
+<!-- <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2 md:gap-0">
     <a href="{{ route('users.create') }}"
        class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-center">
         Tambah Akun
     </a>
-</div>
+</div> -->
 
 <!-- Tabel -->
 <div class="overflow-x-auto">
