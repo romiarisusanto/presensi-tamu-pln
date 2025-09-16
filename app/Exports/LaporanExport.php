@@ -2,58 +2,58 @@
 
 namespace App\Exports;
 
-use App\Models\Laporan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-class LaporanExport implements FromCollection, WithHeadings, WithMapping
+class LaporanExport implements FromCollection, WithHeadings, WithMapping, WithEvents
 {
-    protected $period;
+    protected $laporans;
+    protected $periode;
 
-    public function __construct($period = 'all')
+    public function __construct($laporans, $periode)
     {
-        $this->period = $period;
+        $this->laporans = $laporans;
+        $this->periode = $periode;
     }
-
+    
     public function collection()
     {
-        $query = Laporan::query();
-
-        if ($this->period === 'day') {
-            $query->whereDate('created_at', today());
-        } elseif ($this->period === 'week') {
-            $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
-        } elseif ($this->period === 'month') {
-            $query->whereMonth('created_at', now()->month)
-                  ->whereYear('created_at', now()->year);
-        }
-
-        return $query->get();
+        return $this->laporans;
     }
 
     public function headings(): array
     {
         return [
-            'No',
-            'Nama',
-            'Alamat/Instansi',
-            'Jumlah',
-            'Waktu Masuk',
-            'Waktu Keluar',
-            'Keperluan',
-            'Bukti Identitas',
-            'No Kartu Zona',
-            'Jenis Kendaraan',
-            'No Kendaraan',
-            'Tujuan Unit/PIC'
+            ['Rekap Kunjungan PLN'],             
+            ["Periode: {$this->periode}"],       
+            [],                                  
+            [
+                'No',
+                'Nama',
+                'Alamat/Instansi',
+                'Jumlah',
+                'Waktu Masuk',
+                'Waktu Keluar',
+                'Keperluan',
+                'Bukti Identitas',
+                'No Kartu Zona',
+                'Jenis Kendaraan',
+                'No Kendaraan',
+                'Tujuan Unit/PIC'
+            ]
         ];
     }
 
     public function map($laporan): array
     {
+        static $no = 0; // auto increment nomor urut
+        $no++;
+
         return [
-            $laporan->id,
+            $no,
             $laporan->name,
             $laporan->alamat,
             $laporan->jumlah,
@@ -65,6 +65,27 @@ class LaporanExport implements FromCollection, WithHeadings, WithMapping
             $laporan->nokartu,
             $laporan->nopol,
             $laporan->tujuan_id,
+        ];
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function(AfterSheet $event) {
+                // Merge cell untuk judul (12 kolom = A sampai L)
+                $event->sheet->mergeCells('A1:L1');
+                $event->sheet->mergeCells('A2:L2');
+
+                // Styling judul
+                $event->sheet->getStyle('A1')->applyFromArray([
+                    'font' => ['bold' => true, 'size' => 16],
+                    'alignment' => ['horizontal' => 'center'],
+                ]);
+                $event->sheet->getStyle('A2')->applyFromArray([
+                    'font' => ['italic' => true, 'size' => 12],
+                    'alignment' => ['horizontal' => 'center'],
+                ]);
+            }
         ];
     }
 }

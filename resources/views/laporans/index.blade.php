@@ -35,10 +35,25 @@
             Perbarui
         </button>
 
-        <a href="{{ route('laporans.export') }}" 
-        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-        Unduh Data
-        </a>
+        <form action="{{ route('laporans.export') }}" method="GET" class="flex items-center gap-2">
+            <select name="filter" onchange="toggleDates(this.value)"
+                class="p-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-500">
+                <option value="all">Semua</option>
+                <option value="today">Hari Ini</option>
+                <option value="week">Minggu Ini</option>
+                <option value="month">Bulan Ini</option>
+                <option value="range">Periode</option>
+            </select>
+
+            <input type="date" name="start_date" id="start_date" class="hidden p-2 rounded-lg border border-gray-300">
+            <input type="date" name="end_date" id="end_date" class="hidden p-2 rounded-lg border border-gray-300">
+
+            <button type="submit" 
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                Unduh Data
+            </button>
+        </form>
+
 
 
     </div>
