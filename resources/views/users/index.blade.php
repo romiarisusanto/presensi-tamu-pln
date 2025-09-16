@@ -20,7 +20,7 @@
                 <th class="px-4 py-2 ">Nama</th>
                 <th class="px-4 py-2">Email</th>
                 <th class="px-4 py-2">Dibuat</th>
-                <th class="px-4 py-2">Aksi</th>
+                <!-- <th class="px-4 py-2">Aksi</th> -->
             </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@
                 <td class="px-4 py-2 text-center">{{ $user->name }}</td>
                 <td class="px-4 py-2 break-all text-center">{{ $user->email }}</td>
                 <td class="px-4 py-2 text-center">{{ $user->created_at?->format('d M Y') }}</td>
-                <td class="px-4 py-2 flex flex-col sm:flex-row gap-2 justify-center">
+                <!-- <td class="px-4 py-2 flex flex-col sm:flex-row gap-2 justify-center">
                     <a href="{{ route('users.edit', $user->id) }}" 
                        class="bg-yellow-500 text-white px-2 py-1 rounded text-center hover:bg-yellow-600">
                         Edit
@@ -39,7 +39,7 @@
                             onclick="hapusUser({{ $user->id }}, '{{ $user->name }}')">
                         Hapus
                     </button>
-                </td>
+                </td> -->
             </tr>
             @endforeach
         </tbody>
