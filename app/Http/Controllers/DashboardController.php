@@ -165,9 +165,9 @@ class DashboardController extends Controller
         $submissions = Submission::latest()->get();
         return view('datatamu', compact('submissions'));
     }
-    public function dataUser()
+    public function datauser()
     {
-        return view('dataUser');
+        return view('datauser');
     }
     public function laporan()
     {
