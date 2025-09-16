@@ -10,12 +10,18 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
+
+    protected function scheduleTimezone()
+    {
+        return 'Asia/Jakarta';
+    }
+
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
             \Log::info('Tes scheduler jalan: ' . now());
             app(\App\Http\Controllers\SubmissionController::class)->doResetNonaktif();
-        })->everyFiveMinutes(); 
+        })->dailyAt('00:00'); 
     }
 
 
