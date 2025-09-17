@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             \Log::info('Tes scheduler jalan: ' . now());
             app(\App\Http\Controllers\SubmissionController::class)->doResetNonaktif();
-        })->dailyAt('00:00'); 
+        })->daily(); 
     }
 
 
