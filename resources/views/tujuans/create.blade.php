@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title','Tambah PIC')
+@section('title','Tambah Pegawai')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-6">Tambah PIC</h1>
+<h1 class="text-2xl font-bold mb-6">Tambah Pegawai</h1>
 
 <a href="{{ route('tujuans.index') }}" class="bg-gray-500 text-white px-3 py-1 rounded inline-block mb-4">
     Kembali
