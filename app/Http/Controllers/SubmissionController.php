@@ -264,8 +264,19 @@ class SubmissionController extends Controller
     // untuk dipakai scheduler (tanpa redirect)
     public function doResetNonaktif()
     {
-        Submission::where('status', 'nonaktif')->delete();
+        $deleted = Submission::where('status', 'nonaktif')->delete();
+
+        \Log::info("[Scheduler] doResetNonaktif executed, deleted rows: " . $deleted);
+        echo "[Scheduler] doResetNonaktif executed, deleted rows: " . $deleted . PHP_EOL;
+
+        return $deleted;
     }
+
+    // // untuk dipakai scheduler (tanpa redirect)
+    // public function doResetNonaktif()
+    // {
+    //     Submission::where('status', 'nonaktif')->delete();
+    // }
 
     // public function resetNonaktif()
     // {

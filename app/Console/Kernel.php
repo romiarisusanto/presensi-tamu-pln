@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel
      * Define the application's command schedule.
      */
 
-    protected function scheduleTimezone()
+    protected function scheduleTimezone(): string
     {
         return 'Asia/Jakarta';
     }
@@ -19,10 +19,25 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            \Log::info('Tes scheduler jalan: ' . now());
-            app(\App\Http\Controllers\SubmissionController::class)->doResetNonaktif();
-        })->hourlyAt(0);
+            \Log::info('[Scheduler] start doResetNonaktif at ' . now()->toDateTimeString());
+            // atau echo supaya Heroku Scheduler output kelihatan langsung
+            echo "[Scheduler] start doResetNonaktif at " . now()->toDateTimeString() . PHP_EOL;
+
+            $deleted = app(\App\Http\Controllers\SubmissionController::class)->doResetNonaktif();
+
+            \Log::info("[Scheduler] doResetNonaktif deleted: " . ($deleted ?? 'n/a'));
+            echo "[Scheduler] doResetNonaktif deleted: " . ($deleted ?? 'n/a') . PHP_EOL;
+        })->daily(); // atau dailyAt('00:00') saat sudah yakin
     }
+
+    
+    // protected function schedule(Schedule $schedule)
+    // {
+    //     $schedule->call(function () {
+    //         \Log::info('Tes scheduler jalan: ' . now());
+    //         app(\App\Http\Controllers\SubmissionController::class)->doResetNonaktif();
+    //     })->dailyAt('00:00');
+    // }
 
 
 
