@@ -86,7 +86,7 @@
 
         <!-- Tombol -->
         <div class="mt-6 flex gap-3">
-            <button type="submit" class="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">Simpan</button>
+            <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">Tambah Data</button>
             <a href="/datatamu" class="bg-gray-500 text-white px-5 py-2 rounded hover:bg-gray-600">Batal</a>
         </div>
     </form>
