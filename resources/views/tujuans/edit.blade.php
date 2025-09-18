@@ -48,7 +48,7 @@
     <!-- Tombol Submit -->
     <div class="flex justify-end">
         <button type="submit" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
-            Update Tujuan
+            Simpan
         </button>
     </div>
 </form>
