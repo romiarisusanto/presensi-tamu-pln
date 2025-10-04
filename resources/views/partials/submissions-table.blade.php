@@ -91,7 +91,7 @@ async function openAccSwal(tamuId) {
         console.log("Response ACC:", data);
 
         if (data.success) {
-            Swal.fire("Berhasil", data.message, "success").then(() => location.reload());
+            Swal.fire("Konfirmasi Berhasil!", data.message, "success").then(() => location.reload());
         } else {
             Swal.fire("Gagal", data.message, "error");
         }

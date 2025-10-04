@@ -245,7 +245,7 @@ class SubmissionController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Tamu berhasil dikonfirmasi!',
+            'message' => 'Berikan Kartu Akses ke Pengunjung dan arahkan Pengunjung sesuai Zona Akses',
             'tamu' => [
                 'name'   => $tamu->name,
                 'daerah' => $tamu->daerah,
