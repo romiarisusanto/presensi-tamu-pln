@@ -87,7 +87,7 @@ class SubmissionController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Data berhasil disimpan!'
+                'message' => 'Data berhasil disimpan!, Berikan Kartu Identitas anda ke security dan terima Kartu Akses dari security. Kartu Akses Harap dijaga dengan baik, jika hilang ada sanksi denda!'
             ]);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
