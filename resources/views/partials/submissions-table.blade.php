@@ -69,7 +69,8 @@ async function openAccSwal(tamuId) {
         input: "text",
         inputPlaceholder: "Silahkan Tap Kartu Zona ",
         showCancelButton: true,
-        confirmButtonText: "Lanjut",
+        confirmButtonText: "Konfirmasi",
+        confirmButtonColor: "#28a745",
         cancelButtonText: "Batal"
     });
 
@@ -108,7 +109,8 @@ async function openCheckoutSwal() {
         input: "text",
         inputPlaceholder: "Silahkan Tap Kartu Zona",
         showCancelButton: true,
-        confirmButtonText: "Lanjut",
+        confirmButtonText: "Konfirmasi",
+        confirmButtonColor: "#d33",
         cancelButtonText: "Batal"
     });
 
