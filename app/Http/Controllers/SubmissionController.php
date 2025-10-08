@@ -87,7 +87,7 @@ class SubmissionController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Berikan Kartu Identitas anda ke Security dan terima Kartu Akses dari Security. Kartu Akses harap dijaga dengan baik, jika hilang ada sanksi denda!'
+                'message' => 'Berikan Kartu Identitas anda ke Security dan terima Kartu Akses dari Security. Kartu Akses harap dijaga dengan baik, Jika hilang maka anda wajib mengganti atau denda sebesar Rp.50.000!'
             ]);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
