@@ -1,5 +1,2 @@
 [build]
-buildCommand = "composer install --no-dev --optimize-autoloader && npm install && npm run build"
-
-[providers.php]
-extensions = ["gd"]
+buildCommand = "composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-gd && npm install && npm run build"
