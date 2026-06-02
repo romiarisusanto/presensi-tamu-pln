@@ -1,0 +1,4 @@
+host	  : sh4ob67ph9l80v61.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+port	  : 3306
+username : l181u937tdvbaaz0
+password	  : uj7det6neba1517r
